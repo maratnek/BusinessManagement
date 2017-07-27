@@ -21,7 +21,7 @@ CMDLine::CMDLine(int ac, char **av){
 
   if (m_vm.count("help")) {
     cout << desc << "\n";
-    // return 1;
+    return;
   }
 
   if (m_vm.count("department")) {
@@ -30,11 +30,12 @@ CMDLine::CMDLine(int ac, char **av){
   } else {
     cout << "Department file was not declared.\n";
   }
-
 }
 
 
 string CMDLine::operator[](const char* val)
 {
-    return m_vm[val].as<string>();
+    return !m_vm[val].empty()? m_vm[val].as<string>() : "";
+    // cout << m_vm[val].empty() << endl;
+    // return "";
 }

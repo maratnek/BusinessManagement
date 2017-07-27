@@ -5,8 +5,10 @@
 #include <string>
 
 typedef std::vector<std::string> Row;
-std::vector<Row> parse(const char* data, unsigned int length);
+typedef std::vector<Row> VRow;
 
-void TestCSV(const std::string& fn);
+VRow parse(const char* data, unsigned int length);
+
+VRow DownloadDepartment(const std::string& fn);
 
 #endif // _CSV_PARSE_H_

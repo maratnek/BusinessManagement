@@ -8,13 +8,13 @@
 const boost::regex linesregx("\\r\\n|\\n\\r|\\n|\\r");
 
 // used to split each line to tokens, assuming ',' as column separator
-const boost::regex fieldsregx(",(?=(?:[^\"]*\"[^\"]*\")*(?![^\"]*\"))");
+const boost::regex fieldsregx(";(?=(?:[^\"]*\"[^\"]*\")*(?![^\"]*\"))");
 
 // typedef std::vector<std::string> Row;
 
-std::vector<Row> parse(const char* data, unsigned int length)
+VRow parse(const char* data, unsigned int length)
 {
-    std::vector<Row> result;
+    VRow result;
 
     // iterator splits data to lines
     boost::cregex_token_iterator li(data, data + length, linesregx, -1);
@@ -43,9 +43,8 @@ std::vector<Row> parse(const char* data, unsigned int length)
     return result;
 }
 
-void TestCSV(const std::string& fn)
+VRow DownloadDepartment(const std::string& fn)
 {
-
   // read example file
   std::ifstream infile;
   infile.open(fn);
@@ -54,14 +53,14 @@ void TestCSV(const std::string& fn)
   buffer[infile.tellg()] = '\0';
 
   // parse file
-  std::vector<Row> result  = parse(buffer, strlen(buffer));
+  VRow result  = parse(buffer, strlen(buffer));
 
   // print out result
-  for(size_t r=0; r < result.size(); r++) {
-    Row& row = result[r];
-    for(size_t c=0; c < row.size() - 1; c++) {
-      std::cout << row[c] << "\t";
-    }
-    std::cout << row.back() << std::endl;
+  for (const auto & itRow: result)
+  {
+    for (const auto & itCol: itRow)
+      std::cout << itCol << "\t";
+    std::cout << std::endl;
   }
+  return result;
 }
