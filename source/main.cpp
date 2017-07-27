@@ -8,5 +8,5 @@ int main(int ac, char**av)
   // CBusinessManagement bm(ac, av);
   CMDLine cmd(ac, av);
   cout << cmd["department"] << endl;
-  // TestCSV(cmd["department"]);
+  TestCSV(cmd["department"]);
 }

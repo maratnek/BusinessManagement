@@ -1,6 +1,6 @@
 #include <boost/regex.hpp>
-// #include <vector>
-// #include <string>
+#include <fstream>
+#include <cstring>
 #include <iostream>
 #include "csvparse.h"
 
@@ -43,8 +43,6 @@ std::vector<Row> parse(const char* data, unsigned int length)
     return result;
 }
 
-#include <fstream>
-#include <cstring>
 void TestCSV(const std::string& fn)
 {
 
