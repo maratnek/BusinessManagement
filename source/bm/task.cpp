@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace std;
 
-CTask::CTask(std::string&& name, std::string&& meaning)
+CTask::CTask(const std::string& name, const std::string& meaning, EVid vid)
   : m_name(name),
     m_text(meaning),
     m_resolved(false)

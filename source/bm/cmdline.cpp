@@ -5,10 +5,6 @@
 
 CMDLine::CMDLine(int ac, char **av){
   std::cout << "CMDLine START!" << std::endl;
-  for (int i = 0; i < ac; i++)
-  {
-    cout << i << " = " << av[i] << endl;
-  }
   try {
     // Declare the supported options.
     po::options_description desc("Allowed options");
@@ -24,7 +20,7 @@ CMDLine::CMDLine(int ac, char **av){
       cout << desc << "\n";
       return;
     }
-    
+
     if (m_vm.count("department")) {
       cout << "Department file with employees: "
       << operator[]("department") << ".\n";
@@ -42,6 +38,4 @@ CMDLine::CMDLine(int ac, char **av){
 string CMDLine::operator[](const char* val)
 {
   return !m_vm[val].empty()? m_vm[val].as<string>() : "";
-  // cout << m_vm[val].empty() << endl;
-  // return "";
 }
