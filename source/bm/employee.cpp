@@ -1,19 +1,18 @@
 #include "employee.h"
-#include <utility>
 #include <iostream>
 using namespace std;
 
-CEmployee::CEmployee(std::string&& name, std::string&& position):
-  m_name(move(name)),
-  m_position(move(position))
+CEmployee::CEmployee(const string& name, const string& position, vector<CTask>& tasks):
+  m_name(name),
+  m_position(position),
+  m_tasks(tasks)
 {
   show();
 }
 
-
-CEmployee::CEmployee(const std::string& name, const std::string& position):
-  m_name(move(name)),
-  m_position(move(position))
+CEmployee::CEmployee(const string& name, const string& position):
+  m_name(name),
+  m_position(position)
 {
   show();
 }

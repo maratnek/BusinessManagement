@@ -15,6 +15,7 @@ CBusinessManagement::CBusinessManagement(int ac, char **av)
 
   for(auto itEmpl : DownloadDepartment(cmd["department"]))
     vEmpl.push_back(CEmployee(itEmpl[0], itEmpl[1]));
+  cout << "debug test " << endl;
 
   // CEmployee director("Rock", "Director");
 }
