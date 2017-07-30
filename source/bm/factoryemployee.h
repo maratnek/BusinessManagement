@@ -1,8 +1,10 @@
 #ifndef _FACTORY_EMPLOYEE_H_
 #define _FACTORY_EMPLOYEE_H_
 #include <boost/functional/factory.hpp>
+#include <boost/ptr_container/ptr_map.hpp>
 #include "employee.h"
 #include <string>
+#include <iostream>
 using namespace boost;
 using namespace std;
 
@@ -13,13 +15,14 @@ class  a_factory
     virtual  TAbstractClass *  create()  const  =  0;
     virtual  ~a_factory() {}
 };
+
 typedef a_factory<CEmployee> EmployeeFactory;
 
 template <typename TClass, typename TAbstractClass>
-class CConcreateFactory :  public  a_factory
+class CConcreateFactory :  public  EmployeeFactory
 {
   public :
-    virtual  TAbstractClass *  create ()  const
+    virtual  TAbstractClass*  create()  const
     {
         return  new  TClass();
     }
@@ -27,12 +30,14 @@ class CConcreateFactory :  public  a_factory
 
 class CTechnicalWriter : public CEmployee {
 public:
-  CTechnicalWriter(){cout << "CTechnicalWriter" << end;}
+  CTechnicalWriter(){cout << "CTechnicalWriter" << endl;}
 };
+
 class CAccountant : public CEmployee {
 public:
-  CAccountant(){cout << "CAccountant" << end;}
+  CAccountant(){cout << "CAccountant" << endl;}
 };
+
 typedef CConcreateFactory<CTechnicalWriter,CEmployee> CTechnicalWriterFactory;
 typedef CConcreateFactory<CAccountant,CEmployee> CAccountantFactory;
 
