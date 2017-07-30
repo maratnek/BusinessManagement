@@ -10,6 +10,7 @@ set(SOURCE_LIB
     csvparse.cpp
     employee.cpp
     task.cpp
+    factoryemployee.cpp
     # director.h
   )
 

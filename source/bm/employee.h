@@ -13,6 +13,7 @@ public:
   CEmployee(const std::string& name, const std::string& position);
   void AddTask(const CTask& task){ m_tasks.push_back(task);}
   void ResolvedTask(unsigned int id){if (m_tasks.size() > id) m_tasks[id].Resolved();}
+  // void RemoveTask(unsigned int id) {if (m_tasks.size() > id) m_tasks[id];}
   void show();
   virtual ~CEmployee(){}
 };
