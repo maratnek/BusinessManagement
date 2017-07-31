@@ -8,7 +8,7 @@ CTask::CTask(const std::string& name, const std::string& meaning, EVid vid)
     m_resolved(false)
 {}
 
-void CTask::show()const
+void CTask::show() const
 {
   cout << "Task : " << m_name << endl;
   cout << "Explain : " << m_text << endl;

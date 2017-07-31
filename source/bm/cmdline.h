@@ -10,10 +10,6 @@ class CMDLine {
 public:
     CMDLine (int ac, char **av);
     string operator[](const char* val);
-    virtual ~CMDLine()
-    {
-      std::cout << "CMDLine END!" << std::endl;
-    }
 };
 
 #endif //_CMDLINE_H_

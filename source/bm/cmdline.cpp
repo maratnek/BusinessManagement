@@ -4,7 +4,6 @@
 #include <string>
 
 CMDLine::CMDLine(int ac, char **av){
-  std::cout << "CMDLine START!" << std::endl;
   try {
     // Declare the supported options.
     po::options_description desc("Allowed options");
@@ -26,6 +25,7 @@ CMDLine::CMDLine(int ac, char **av){
       << operator[]("department") << ".\n";
     } else {
       cout << "Department file was not declared.\n";
+      cout << desc << "\n";
     }
   }
   catch(exception & e)
