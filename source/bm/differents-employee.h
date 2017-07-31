@@ -6,7 +6,7 @@
 
 class CProgrammer : public CEmployee {
 public:
-  CProgrammer(const std::string name):CEmployee(name){}
+  CProgrammer(const std::string name) : CEmployee(name){}
   virtual void show() const
   {
     std::cout << "*** Программист ***" << std::endl;
@@ -47,7 +47,7 @@ public:
 
 class CAccountant : public CEmployee {
 public:
-  CAccountant(const std::string name):CEmployee(name){std::cout << "CAccountant" << std::endl;}
+  CAccountant(const std::string name):CEmployee(name){}
   virtual void show() const
   {
     std::cout << "*** Бухгалтер ***" << std::endl;
