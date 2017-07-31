@@ -38,7 +38,6 @@ int CBusinessManagement::Start(int ac, char** av)
   for(auto itEmpl : DownloadDepartment(cmd["department"]))
   {
     try {
-      // cout << itEmpl[0] << " - " << itEmpl[1] << endl;
       m_employeeList.push_back(shEmpl(m_factories[itEmpl[1]]( itEmpl[0] )));
     }
     catch(exception &e)
@@ -48,22 +47,15 @@ int CBusinessManagement::Start(int ac, char** av)
     }
   }
   //
-  // auto temp = m_factories["Директор"]("Артур");
-  // auto director = dynamic_cast<CDirector*>(temp);
-  // director->show();
-  // cout << typeid(director) << endl;
-    // CDirector director("Артур");
-    // director->SetGoal("Большой рост в направлении продаж.");
-    // director->ShowReport(*m_employeeList[2]);
-    // director->ShowReport(*director);
-    // director->SetTask(vEmpl[1], CTask("Develop", "Develop BusinessManagement"));
-    // director->SetTask(vEmpl[1], CTask("Develop", "Project new modul for the BusinessManagement"));
-    // vEmpl[1].ResolvedTask(0);
-    // director.ShowReport(vEmpl[1]);
+  auto director = static_pointer_cast<CDirector>(shEmpl(m_factories["Директор"]("Артур")));
+  director->show();
+  director->SetGoal("Большой рост в направлении продаж.");
+  director->ShowReport(*m_employeeList[3]);
+  director->ShowReport(*director);
+  director->SetTask(*m_employeeList[1], CTask("Develop", "Develop BusinessManagement"));
+  director->ShowReport(*m_employeeList[1]);
+  director->SetTask(*m_employeeList[1], CTask("Develop", "Project new modul for the BusinessManagement"));
+  m_employeeList[1]->ResolvedTask(0);
+  director->ShowReport(*m_employeeList[1]);
   return 0;
-}
-
-CBusinessManagement::~CBusinessManagement()
-{
-  std::cout << " CBusinessManagement END " << std::endl;
 }

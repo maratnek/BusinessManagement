@@ -18,7 +18,6 @@ public:
   void Init();
   // начало работы
   int Start(int ac, char** av);
-  virtual ~CBusinessManagement();
 };
 
 #endif // _BUSINESS_MANAGEMENT_H_

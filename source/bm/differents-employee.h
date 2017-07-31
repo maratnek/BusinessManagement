@@ -6,33 +6,53 @@
 
 class CProgrammer : public CEmployee {
 public:
-  CProgrammer(const std::string name):CEmployee(name){std::cout << "CProgrammer" << std::endl;}
-  virtual void show() const {display();}
+  CProgrammer(const std::string name):CEmployee(name){}
+  virtual void show() const
+  {
+    std::cout << "*** Программист ***" << std::endl;
+    display();
+  }
 };
 
 
 class CTester : public CEmployee {
 public:
-  CTester(const std::string name):CEmployee(name){std::cout << "CTester" << std::endl;}
-  virtual void show() const {display();}
+  CTester(const std::string name):CEmployee(name){}
+  virtual void show() const
+  {
+    std::cout << "*** Тестер ***" << std::endl;
+    display();
+  }
 };
 
 class CHeadDepartment : public CEmployee {
 public:
-  CHeadDepartment(const std::string name):CEmployee(name){std::cout << "CHeadDepartment" << std::endl;}
-  virtual void show() const {display();}
+  CHeadDepartment(const std::string name):CEmployee(name){}
+  virtual void show() const
+  {
+    std::cout << "*** Руководитель отдела ***" << std::endl;
+    display();
+  }
 };
 
 class CTechnicalWriter : public CEmployee {
 public:
-  CTechnicalWriter(const std::string name):CEmployee(name){std::cout << "CTechnicalWriter" << std::endl;}
-  virtual void show() const {display();}
+  CTechnicalWriter(const std::string name):CEmployee(name){}
+  virtual void show() const
+  {
+    std::cout << "*** Технический писатель ***" << std::endl;
+    display();
+  }
 };
 
 class CAccountant : public CEmployee {
 public:
   CAccountant(const std::string name):CEmployee(name){std::cout << "CAccountant" << std::endl;}
-  virtual void show() const {display();}
+  virtual void show() const
+  {
+    std::cout << "*** Бухгалтер ***" << std::endl;
+    display();
+  }
 };
 
 #endif // _DIFFERENTS_EMPLOYEE_H_

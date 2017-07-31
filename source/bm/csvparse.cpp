@@ -66,12 +66,12 @@ VRow DownloadDepartment(const std::string& fn)
     result = parse(buffer.get(), length);
 
     // print out result
-    for (const auto & itRow: result)
-    {
-      for (const auto & itCol: itRow)
-      std::cout << itCol << "\t";
-      std::cout << std::endl;
-    }
+    // for (const auto & itRow: result)
+    // {
+    //   for (const auto & itCol: itRow)
+    //   std::cout << itCol << "\t";
+    //   std::cout << std::endl;
+    // }
   }
   catch(std::exception &e)
   {
