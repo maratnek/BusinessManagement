@@ -1,22 +1,21 @@
 #ifndef _BUSINESS_MANAGEMENT_H_
 #define _BUSINESS_MANAGEMENT_H_
-#include <memory>
 #include <map>
 #include <functional>
 #include "employee.h"
 
-using shEmpl = std::shared_ptr<CEmployee>;
+// using shEmpl = std::shared_ptr<CEmployee>;
 
 class CBusinessManagement {
   // objects factory
   std::map<std::string, std::function<CEmployee* (const std::string&)>> m_factories;
-  // СЃРїРёСЃРѕРє СЂР°Р±РѕС‚РЅРёРєРѕРІ РѕС‚РґРµР»Р°
+  // список работников отдела
   std::vector<shEmpl> m_employeeList;
 public:
   CBusinessManagement();
-  // РёРЅРёС†РёР°Р»РёР·Р°С†РёСЏ РёР· С„Р°Р№Р»Р°
+  // инициализация из файла
   void Init();
-  // РЅР°С‡Р°Р»Рѕ СЂР°Р±РѕС‚С‹
+  // начало работы
   int Start(int ac, char** av);
 };
 

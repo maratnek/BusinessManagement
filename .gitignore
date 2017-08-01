@@ -16,6 +16,14 @@ CTestTestfile.cmake
 
 
 # Created by https://www.gitignore.io/api/c++
+# vs
+*.suo
+*.vcxproj
+*.vcxproj.filters
+bin/BusinessManagement.*
+bin/bm
+Debug
+Win32
 
 ### C++ ###
 # Prerequisites

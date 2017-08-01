@@ -11,7 +11,7 @@
 using namespace std::placeholders;
 using namespace std;
 
-// Р—Р°РґР°С‡Р° РЅР° РѕС‚РґРµР» РІРµС€Р°РµС‚СЃСЏ РЅР° СЂСѓРєРѕРІРѕРґРёС‚РµР»СЏ РѕС‚РґРµР»Р°
+// Задача на отдел вешается на руководителя отдела
 
 CBusinessManagement::CBusinessManagement()
 {
@@ -21,12 +21,12 @@ CBusinessManagement::CBusinessManagement()
 
 void CBusinessManagement::Init()
 {
-  m_factories["Р Р°Р·СЂР°Р±РѕС‚С‡РёРє"] = std::bind(boost::factory<CProgrammer*>(), _1);
-  m_factories["Р”РёСЂРµРєС‚РѕСЂ"] = std::bind(boost::factory<CDirector*>(), _1);
-  m_factories["Р СѓРєРѕРІРѕРґРёС‚РµР»СЊ РѕС‚РґРµР»Р°"] = std::bind(boost::factory<CHeadDepartment*>(), _1);
-  m_factories["РўРµС…РЅРёС‡РµСЃРєРёР№ РїРёСЃР°С‚РµР»СЊ"] = std::bind(boost::factory<CTechnicalWriter*>(), _1);
-  m_factories["РЎРїРµС†РёР°Р»РёСЃС‚ С‚РµСЃС‚РёСЂРѕРІР°РЅРёСЏ"] = std::bind(boost::factory<CTester*>(), _1);
-  m_factories["Р‘СѓС…РіР°Р»С‚РµСЂ"] = std::bind(boost::factory<CAccountant*>(), _1);
+  m_factories["Разработчик"] = std::bind(boost::factory<CProgrammer*>(), _1);
+  m_factories["Директор"] = std::bind(boost::factory<CDirector*>(), _1);
+  m_factories["Руководитель отдела"] = std::bind(boost::factory<CHeadDepartment*>(), _1);
+  m_factories["Технический писатель"] = std::bind(boost::factory<CTechnicalWriter*>(), _1);
+  m_factories["Специалист тестирования"] = std::bind(boost::factory<CTester*>(), _1);
+  m_factories["Бухгалтер"] = std::bind(boost::factory<CAccountant*>(), _1);
 }
 
 int CBusinessManagement::Start(int ac, char** av)
@@ -34,29 +34,30 @@ int CBusinessManagement::Start(int ac, char** av)
   CMDLine cmd(ac, av);
   if (cmd["department"].empty())
     return 1;
+  auto vDepName = DownloadDepartment(cmd["department"]);
+  if (vDepName.empty())
+    return 2;
 
-  for(auto itEmpl : DownloadDepartment(cmd["department"]))
+  for(auto itEmpl : vDepName)
   {
     try {
       m_employeeList.push_back(shEmpl(m_factories[itEmpl[1]]( itEmpl[0] )));
     }
     catch(exception &e)
     {
-      cerr << "РќРµ СѓРґР°Р»РѕСЃСЊ СЃРѕР·РґР°С‚СЊ СЃРѕС‚СЂСѓРґРЅРёРєР°: " << itEmpl[0] << " - " << itEmpl[1] << endl;
+      cerr << "Не удалось создать сотрудника: " << itEmpl[0] << " - " << itEmpl[1] << endl;
       cerr << e.what() << endl;
     }
   }
-  //
-  auto director = static_pointer_cast<CDirector>(shEmpl(m_factories["Р”РёСЂРµРєС‚РѕСЂ"]("РђСЂС‚СѓСЂ")));
-  director->show();
-  director->show();
-  director->SetGoal("Р‘РѕР»СЊС€РѕР№ СЂРѕСЃС‚ РІ РЅР°РїСЂР°РІР»РµРЅРёРё РїСЂРѕРґР°Р¶.");
-  director->ShowReport(m_employeeList[3]);
-  director->ShowReport(director);
-  director->SetTask(*m_employeeList[1], CTask("Develop", "Develop BusinessManagement"));
+  auto director = static_pointer_cast<CDirector>(shEmpl(m_factories["Директор"]("Артур")));
+  // Постановка задачи для всего предприятия
+  director->SetGoal("Большой рост в направлении продаж.");
+  // Поставить задачу сотруднику 1
+  director->SetTask(m_employeeList[1], CTask("Develop", "Develop BusinessManagement"));
   director->ShowReport(m_employeeList[1]);
-  director->SetTask(*m_employeeList[1], CTask("Develop", "Project new module for the BusinessManagement"));
+  director->SetTask(m_employeeList[1], CTask("Develop", "Project new module for the BusinessManagement"));
   m_employeeList[1]->ResolvedTask(0);
-  director->ShowReport(m_employeeList[1]);
+  // Показать отчет по всему отделу
+  director->ShowReports(m_employeeList);
   return 0;
 }

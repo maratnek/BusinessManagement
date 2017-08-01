@@ -4,12 +4,12 @@
 
 class CTask {
 public:
-  // РІРёРґ Р·Р°РґР°С‡Рё РѕР±С‰РёР№ РёР»Рё СЃРїРµС†РёС„РёС‡РµСЃРєРёР№
+  // вид задачи общий или специфический
   enum EVid { ALL, SPECIFIC };
 private:
   EVid m_eVid;
   std::string m_name;
-  std::string m_text;
+  std::string m_contain;
   bool m_resolved;
 public:
   CTask(const std::string& name, const std::string& meaning, EVid vid = EVid::ALL);

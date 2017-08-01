@@ -1,8 +1,10 @@
 #ifndef _EMPLOYEE_H_
 #define _EMPLOYEE_H_
 #include <vector>
-#include "task.h"
+#include <memory>
 #include <iostream>
+#include "task.h"
+
 
 class CEmployee {
 protected:
@@ -11,7 +13,6 @@ protected:
 public:
   CEmployee(const std::string& name, std::vector<CTask>& tasks);
   CEmployee(const std::string& name);
-  CEmployee(){std::cout << "Empty employee!!!" << std::endl;};//delete
   void AddTask(const CTask& task){ m_tasks.push_back(task);}
   void ResolvedTask(unsigned int id){if (m_tasks.size() > id) m_tasks[id].Resolved();}
   // void RemoveTask(unsigned int id) {if (m_tasks.size() > id) m_tasks[id];}
@@ -19,5 +20,7 @@ public:
   virtual void display() const;
   virtual ~CEmployee(){}
 };
+
+typedef  std::shared_ptr<CEmployee> shEmpl;
 
 #endif // _EMPLOYEE_H_

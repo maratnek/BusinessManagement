@@ -2,7 +2,7 @@
 #define _DIRECTOR_H_
 #include "employee.h"
 
-// РћС‚С‡РµС‚
+// Отчет
 struct Report {};
 
 class CDirector : public CEmployee {
@@ -10,15 +10,17 @@ public:
   CDirector(const std::string& name) : CEmployee(name) {}
   virtual void show() const
   {
-    std::cout << "*** Р”РёСЂРµРєС‚РѕСЂ ***" << std::endl;
+    std::cout << "*** Директор ***" << std::endl;
     display();
   }
-  //РїРѕСЃС‚Р°РІРёС‚СЊ Р·Р°РґР°С‡Сѓ РґР»СЏ РІСЃРµРіРѕ РїСЂРµРґРїСЂ
-  void SetGoal(const std::string& goal){ m_tasks.push_back(CTask("РџРѕСЃС‚Р°РЅРѕРІРєР° РѕР±С‰РµР№ С†РµР»Рё РїСЂРµРґРїСЂРёСЏС‚РёСЏ",goal,CTask::SPECIFIC));}
-  //РїРѕР»СѓС‡РёС‚СЊ РѕС‚С‡РµС‚ РѕС‚ СЃРѕС‚СЂСѓРґРЅРёРєР° Рѕ РІС‹РїРѕР»РЅРµРЅРёРё Р·Р°РґР°С‡Рё
-  void ShowReport(shared_ptr<CEmployee> empl){ empl->show();};
-  //РїРѕСЃС‚Р°РІРёС‚СЊ Р·Р°РґР°С‡Сѓ РґР»СЏ РѕС‚РґРµР»Р° РёР»Рё СЃРѕС‚СЂСѓРґРЅРёРєР°
-  void SetTask(CEmployee& empl, const CTask& task){ empl.AddTask(task);};
+  //поставить задачу для всего предпр
+  void SetGoal(const std::string& goal){ m_tasks.push_back(CTask("Постановка общей цели предприятия",goal,CTask::SPECIFIC));}
+  //получить отчет от сотрудника о выполнении задачи
+  void ShowReport(shEmpl empl){ empl->show();}
+  //получить отчет от сотрудников о выполнении задач
+  void ShowReports(std::vector<shEmpl> vempl){ std::cout << ">>> Отчет по отделу <<<" << std::endl; for(const auto &it : vempl) it->show();}
+  //поставить задачу для отдела или сотрудника
+  void SetTask(shEmpl empl, const CTask& task){ empl->AddTask(task);};
 };
 
 #endif // _EMPLOYEE_H_

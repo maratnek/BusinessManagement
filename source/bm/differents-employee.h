@@ -9,7 +9,7 @@ public:
   CProgrammer(const std::string name) : CEmployee(name){}
   virtual void show() const
   {
-    std::cout << "*** ÐŸÑ€Ð¾Ð³Ñ€Ð°Ð¼Ð¼Ð¸ÑÑ‚ ***" << std::endl;
+    std::cout << "*** Ïðîãðàììèñò ***" << std::endl;
     display();
   }
 };
@@ -20,7 +20,7 @@ public:
   CTester(const std::string name):CEmployee(name){}
   virtual void show() const
   {
-    std::cout << "*** Ð¢ÐµÑÑ‚ÐµÑ€ ***" << std::endl;
+    std::cout << "*** Òåñòåð ***" << std::endl;
     display();
   }
 };
@@ -30,7 +30,7 @@ public:
   CHeadDepartment(const std::string name):CEmployee(name){}
   virtual void show() const
   {
-    std::cout << "*** Ð ÑƒÐºÐ¾Ð²Ð¾Ð´Ð¸Ñ‚ÐµÐ»ÑŒ Ð¾Ñ‚Ð´ÐµÐ»Ð° ***" << std::endl;
+    std::cout << "*** Ðóêîâîäèòåëü îòäåëà ***" << std::endl;
     display();
   }
 };
@@ -40,7 +40,7 @@ public:
   CTechnicalWriter(const std::string name):CEmployee(name){}
   virtual void show() const
   {
-    std::cout << "*** Ð¢ÐµÑ…Ð½Ð¸Ñ‡ÐµÑÐºÐ¸Ð¹ Ð¿Ð¸ÑÐ°Ñ‚ÐµÐ»ÑŒ ***" << std::endl;
+    std::cout << "*** Òåõíè÷åñêèé ïèñàòåëü ***" << std::endl;
     display();
   }
 };
@@ -50,7 +50,7 @@ public:
   CAccountant(const std::string name):CEmployee(name){}
   virtual void show() const
   {
-    std::cout << "*** Ð‘ÑƒÑ…Ð³Ð°Ð»Ñ‚ÐµÑ€ ***" << std::endl;
+    std::cout << "*** Áóõãàëòåð ***" << std::endl;
     display();
   }
 };

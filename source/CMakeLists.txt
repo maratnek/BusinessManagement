@@ -1,14 +1,18 @@
 cmake_minimum_required(VERSION 2.8)
 # project name
-project(TESTBM)
+project(BusinessManagement)
 
 #boost
-# set(Boost_USE_STATIC_LIBS OFF)
+set(Boost_USE_STATIC_LIBS ON)
 set(Boost_USE_MULTITHREADED ON)
 find_package(Boost COMPONENTS regex program_options REQUIRED)
+if(WIN32)
+	set(BOOST_ROOT "C:/Program Files/boost/boost_1_64_0")
+endif(WIN32)
+if(UNIX)
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++1y -Wall")
+endif(UNIX)
 include_directories(${Boost_INCLUDE_DIRS})
-
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++1y -Wall")
 
 set(SOURCE_EXE main.cpp)
 
