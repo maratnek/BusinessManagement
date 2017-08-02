@@ -2,15 +2,14 @@
 #include <iostream>
 using namespace std;
 
-CTask::CTask(const std::string& name, const std::string& meaning, EVid vid)
-  : m_name(name),
-    m_contain(meaning),
+CTask::CTask(const std::string& meaning, EVid vid)
+    : m_contain(meaning),
     m_resolved(false)
 {}
 
-void CTask::show() const
+void CTask::display() const
 {
-  cout << "Task : " << m_name << endl;
-  cout << "Explain : " << m_contain << endl;
-  cout << (IsResolved()? "Resolved" : "NotResolved") << endl;
+  cout << "Задача : " << m_name << endl;
+  cout << "Содержание : " << m_contain << endl;
+  cout << (IsResolved()? "Решен" : "Не решён") << endl;
 }
