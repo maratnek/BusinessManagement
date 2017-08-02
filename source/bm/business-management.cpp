@@ -67,7 +67,6 @@ int CBusinessManagement::Start(int ac, char** av)
 		}
 	};
 	auto getNum = [&](unsigned size)->unsigned{
-		showEmployeeList();
 		string str;
 		getline(cin, str, '\n');
 			unsigned NumEmployee = size + 1;
@@ -112,6 +111,7 @@ int CBusinessManagement::Start(int ac, char** av)
 		else if (str == "2")
 		{
 			// Поставить задачу сотруднику
+			showEmployeeList();
 			unsigned NumEmployee = getNum(m_employeeList.size());
 			if (NumEmployee > 0)
 			{
@@ -124,17 +124,14 @@ int CBusinessManagement::Start(int ac, char** av)
 				{
 					cout << "Опишите содержание задачи." << endl;
 					if (getline(cin, str, '\n'))
-						director->SetTask(m_employeeList[NumEmployee-1], VTasks[NumTask], str );
+						director->SetTask(m_employeeList[NumEmployee-1], VTasks[NumTask-1], str );
 				}
-				/*
-				m_employeeList[NumEmployee-1]->ResolvedTask(0);
-				m_employeeList[NumEmployee-1]->show();*/
-
 			}
 		}
 		else if (str == "3")
 		{
 			// ОТЧЕТ
+		showEmployeeList();
 			unsigned NumEmployee = getNum(m_employeeList.size());
 			if (NumEmployee > 0)
 				director->ShowReport(m_employeeList[NumEmployee-1]);
@@ -145,7 +142,10 @@ int CBusinessManagement::Start(int ac, char** av)
 			cout << " Cледуйте по МЕНЮ! " << endl;
 		}
 		showMenu();
-
+		//EngineEmulate();
+		/*
+				m_employeeList[NumEmployee-1]->ResolvedTask(0);
+				m_employeeList[NumEmployee-1]->show();*/
 	}
 
 	return 0;

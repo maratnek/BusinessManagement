@@ -4,8 +4,6 @@
 #include <functional>
 #include "employee.h"
 
-// using shEmpl = std::shared_ptr<CEmployee>;
-
 class CBusinessManagement {
   // objects factory
   std::map<std::string, std::function<CEmployee* (const std::string&)>> m_factories;

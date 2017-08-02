@@ -3,9 +3,8 @@
 #include <vector>
 #include <memory>
 #include <iostream>
-#include <map>
+#include <set>
 #include <functional>
-using namespace std::placeholders;
 
 #include "task.h"
 
@@ -14,11 +13,11 @@ protected:
   std::string m_name;
   // список задач работника
   std::vector<shTask> m_tasks;
-  // objects factory tasks
-  std::map<std::string, std::function<CTask* (const std::string&)>> m_factTasks;
+  // set tasks
+  std::set<std::string> m_sTasks;
 public:
   CEmployee(const std::string& name);
-  void AddTask(const string task_name, const string& declaration);
+  void AddTask(const std::string task_name, const std::string& declaration);
   virtual std::string GetPositionName() const { return m_name; }
   void ResolvedTask(unsigned int id){if (m_tasks.size() > id) m_tasks[id]->Resolved();}
   //void RemoveTask(unsigned int id) {if (m_tasks.size() > id) m_tasks[id];}

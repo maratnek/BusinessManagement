@@ -10,16 +10,13 @@ CEmployee::CEmployee(const string& name):
 	m_name(name)
 {
 	// общие задачи для каждого работника
-	m_factTasks["Общие задачи"] = std::bind(boost::factory<CALLTask*>(), _1);
-	m_factTasks["убрать рабочее место"] = std::bind(boost::factory<CALLTask*>(), _1);
-	m_factTasks["отпуск"] = std::bind(boost::factory<CALLTask*>(), _1);
-
-	m_tasks.push_back(shTask( m_factTasks["Общие задачи"]("Отпуск") ));
+	m_sTasks.insert("убрать рабочее место");
+	m_sTasks.insert("уйти в отпуск");
 }
 
-void CEmployee::AddTask(const string task_name, const string& declaration)
+void CEmployee::AddTask(const string t_name, const string& decl)
 { 
-	m_tasks.push_back(shTask( m_factTasks[task_name](declaration) ));
+	m_tasks.push_back(make_shared<CTask>(t_name, decl));
 }
 
 
@@ -40,18 +37,18 @@ void CEmployee::showTasks() const
 {
 	unsigned i = 0;
 	cout << "Задачи для сотрудника: " << endl;
-	for (const auto &it : m_factTasks)
+	for (const auto &it : m_sTasks)
 	{
-		cout << ++i << ": " << it.first << endl;
+		cout << ++i << ": " << it << endl;
 	}
 }
 
 vector<string> CEmployee::VTasks() const
 {
 	vector<string> VStr;
-	for (const auto &it : m_factTasks)
+	for (const auto &it : m_sTasks)
 	{
-		VStr.push_back( it.first );
+		VStr.push_back( it );
 	}
 	return VStr;
 }
